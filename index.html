@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cemilan Ceria</title>
+    <link
+      rel="shortcut icon"
+      href="https://res.cloudinary.com/dtzcamtgb/image/upload/logocireng"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      :root {
+        --text-default-light: #ff4545e0;
+        --text-default: #ff4545c9;
+        --text-default-100: #ff5b45;
+        --background-default: #fbd288;
+        --background-dark: #fae1b2;
+      }
+
+      body {
+        background: var(--background-dark);
+      }
+
+      .navbar {
+         top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: sticky;
+        z-index: 10;
+        background: var(--background-default);
+        height: 60px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 2px 10px;
+        transition: 1s;
+      }
+
+      .navbar.scrolled {
+        background: rgba(250, 211, 138, 0.4);
+        backdrop-filter: blur(18px);
+        border-radius: 10px;
+      }
+
+      .navbar .title {
+        font-size: larger;
+        font-weight: 700;
+        color: var(--text-default);
+        transition: 0.8s;
+      }
+
+      .navbar .link-group {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+      }
+
+      .link-group a.link {
+        color: var(--text-default);
+        transition: 0.3s;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 6px;
+      }
+
+      .link-group .link:hover {
+        background: #ff9c73;
+      }
+
+      .product-list,
+      .testimoni-box,
+      .about-box {
+        display: flex;
+        flex-direction: column;
+        background: var(--background-default);
+        border-radius: 8px;
+        margin: 10px auto;
+        padding: 10px;
+        max-width: 950px;
+      }
+
+      .box-product {
+        margin: 10px;
+      }
+
+      .box-product img {
+        width: 100%;
+        height: 320px;
+        -webkit-user-drag: none;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .info-product {
+        padding: 6px;
+      }
+
+      .info-product .title {
+        color: var(--text-default-light);
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+
+      .info-product .deskripsi {
+        font-weight: 300;
+        color: var(--text-default);
+        width: 95%;
+        margin-bottom: 10px;
+      }
+
+      .pembayaran {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .harga {
+        font-weight: 500;
+        color: var(--text-default-100);
+      }
+
+      .harga span {
+        font-style: italic;
+      }
+
+      .pembayaran .btn-bayar {
+        background: var(--background-default);
+        color: var(--text-default-100);
+        transition: 0.35s;
+        text-decoration: none;
+        border: 1px solid;
+        color: var(--text-default);
+        border-radius: 5px;
+        padding: 3px 30px;
+        font-weight: 500;
+      }
+
+      .btn-bayar:hover {
+        background: var(--text-default);
+        color: var(--background-default);
+      }
+
+      .testimoni-box {
+        background: var(--background-default);
+      }
+
+      .testimoni-box .title {
+        color: var(--text-default-100);
+        font-size: larger;
+        font-weight: 700;
+        border-bottom: 2px solid var(--text-default);
+        padding-bottom: 8px;
+      }
+
+      .card-client {
+        background: #f7d07a;
+        /* background: #e6505046; */
+        padding: 8px;
+        border-radius: 6px;
+        width: 65%;
+        margin: 10px 20px;
+        transition: 0.25s;
+        box-shadow: 3px 5px rgba(129, 116, 115, 0.2);
+      }
+
+      .card-client:hover {
+        box-shadow: 5px 8px rgba(255, 91, 69, 0.75);
+        transform: translateY(-4px);
+      }
+
+      .card-client .profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .card-client .profile .user-info {
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--text-default-light);
+      }
+
+      .profile .user-info span {
+        font-weight: 500;
+        font-style: italic;
+        font-size: 0.92rem;
+        color: var(--text-default-light);
+      }
+
+      .card-client img {
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      .card-client .deskripsi {
+        font-size: 0.88rem;
+        padding-left: 15px;
+        /* color: rgba(10, 10, 10, 0. 8);
+         */
+        color: var(--text-default-light);
+      }
+
+      .card-client .deskripsi::before {
+        content: '"';
+        margin-right: 2px;
+      }
+      .card-client .deskripsi::after {
+        content: '"';
+        margin-left: 2px;
+      }
+
+      .about-box {
+      }
+
+      .about-box .title {
+        color: var(--text-default-100);
+        font-size: larger;
+        font-weight: 700;
+        border-bottom: 2px solid var(--text-default);
+        padding-bottom: 2px;
+        margin-bottom: 10px;
+      }
+
+      .about-box .item-warp {
+        /* display: flex;
+      gap: 10px; */
+        display: grid;
+        grid-template-columns: 70px 2fr 100px;
+        grid-template-rows: 1;
+      }
+
+      .about-box .item-warp .img-container {
+        display: flex;
+        order: 1;
+        width: 50px;
+        height: 50px;
+        padding: 3px;
+        background: var(--text-default);
+        border-radius: 6px;
+      }
+
+      .about-box .item-warp .img-container img {
+        width: 100%;
+        user-select: none;
+      }
+
+      .infomation .name {
+        color: var(--text-default-100);
+        font-size: medium;
+        font-weight: 700;
+      }
+
+      .infomation .dekripsi {
+        color: var(--text-default-100);
+        font-size: small;
+        font-weight: 400;
+      }
+
+      .item-warp .content-warp {
+        order: 2;
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+      }
+
+      .contact-list {
+        order: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .contact-list .contact-item {
+        text-decoration: none;
+        padding: 5px;
+        border-radius: 8px;
+        border: 1px solid #ff5b45;
+        color: var(--text-default);
+        font-size: small;
+        font-weight: 600;
+      }
+
+      .contact-item .contact-item:hover {
+        background: var(--text-default);
+        color: var(--background-default);
+      }
+
+      /* CSS PEMESANAN SAYA */
+
+      #overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        /* cursor: pointer; */
+      }
+
+      .card {
+        background: var(--background-default);
+        margin: 100px auto;
+        width: 75%;
+        max-width: 500px;
+        height: 250px;
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      .card .card-title {
+        color: var(--text-default-100);
+        border-bottom: 2px solid var(--text-default);
+        font-size: 22px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+      }
+
+      .card .card-title button {
+        color: var(--text-default);
+        background: var(--background-dark);
+        font-size: large;
+        border-radius: 6px;
+        border: 0.5px solid var(--text-default);
+        transition: 0.25s;
+      }
+      .card .card-title button:hover {
+        border: 0.5px solid var(--background-dark);
+      }
+
+      .card .card-body {
+        /* display: flex; */
+      }
+
+      .card .card-body .product {
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      .card .card-body .product img {
+        border-radius: 7px;
+        border: 2px solid rgba(255, 71, 71, 0.5);
+        width: 120px;
+      }
+
+      .card .card-body .product .information {
+        transition: 0.7s;
+        padding-left: 8px;
+      }
+      .card .card-body .product .information .title {
+        font-weight: 700;
+        color: var(--text-default-light);
+      }
+
+      .card .card-body .product .information .deksripsi {
+        font-weight: 500;
+        font-size: small;
+        color: var(--text-default-light);
+      }
+
+      .card .card-body .product .information .deksripsi .comment {
+        font-size: x-small;
+        font-weight: 600;
+      }
+
+      .card .card-body .product .information .deksripsi .comment:before {
+        content: "*";
+        color: #0c0c0c;
+        font-size: x-small;
+        font-weight: 600;
+      }
+
+      .card .card-body .payment-user {
+        display: flex;
+        /* display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 0.3fr 0.8fr; */
+        /* background: red; */
+      }
+      .card .card-body .payment-user .payment-info {
+        /* order: 1; */
+      }
+
+      .card .card-body .payment-user .payment-info .title {
+        font-size: smaller;
+        font-weight: 600;
+        color: var(--text-default-light);
+      }
+
+      .card .card-body .payment-user .payment-info input[type="text"] {
+        width: 60%;
+        margin-top: 4px;
+        border-radius: 5px;
+        background: var(--background-dark);
+        border: 2px var(--text-default-100) solid;
+        outline: none;
+        transition: 0.25s;
+        color: red;
+      }
+      .card .card-body .payment-user .payment-info input[type="text"]:focus {
+        border: 2px rgba(255, 71, 71, 0.5) solid;
+      }
+
+      .card .card-body .payment-user .payment-send {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 8px;
+      }
+      .card .card-body .payment-user .payment-send .counting {
+        display: flex;
+        justify-content: space-around;
+      }
+      .card .card-body .payment-user .payment-send .counting button {
+        color: var(--text-default);
+        background: var(--background-dark);
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 1.5px solid var(--text-default);
+      }
+      .card .card-body .payment-user .payment-send .counting .count {
+        font-size: medium;
+        font-weight: 700;
+        color: var(--text-default);
+      }
+
+      .card .card-body .payment-user .payment-send .btn-send {
+        font-weight: 500;
+        border-radius: 8px;
+        border: 2px solid #128c7e;
+        background: #dcf8c6;
+        color: #075e54;
+        cursor: pointer;
+      }
+
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px grey;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--text-default-light);
+        border-radius: 3px;
+      }
+
+      @media only screen and (max-width: 728px) {
+        .navbar .title {
+          font-size: medium;
+        }
+
+        .box-product img {
+          width: 100%;
+          -webkit-user-drag: none;
+          border-radius: 8px;
+          object-fit: fill;
+        }
+
+        .card {
+          height: 300 px;
+        }
+
+        .card .card-body .product .information .title {
+          font-weight: 600;
+          color: var(--text-default-light);
+        }
+        .card .card-body .product .information .deksripsi {
+          font-weight: 400;
+          font-size: small;
+          color: var(--text-default-light);
+        }
+
+        
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="overlay">
+      <div class="card">
+        <div class="card-title">
+          Keranjang
+          <button onclick="hidden_overlay()">
+            <i class="bi bi-x-circle"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="product">
+            <img
+              src="https://www.sasa.co.id/medias/page_medias/resep_cireng_isi_ala_sasa.jpg"
+              alt=""
+            />
+            <div class="information">
+              <div class="title">Cireng Ceria</div>
+              <div class="deksripsi">
+                Nikmati kelezatan Cireng crispy dengan isian gurih yang meleleh
+                di mulut! <span class="comment">Only COD</span>
+              </div>
+            </div>
+          </div>
+          <div class="payment-user">
+            <div class="payment-info">
+              <div class="title">INFORMASI PEMBAYARAN</div>
+              <input
+                type="text"
+                name="nama"
+                id="namapembeli"
+                placeholder="Atas Nama"
+              />
+              <input
+                type="text"
+                name="alamat"
+                id="alamatpembeli"
+                placeholder="Alamat Pembeli"
+              />
+            </div>
+
+            <div class="payment-send">
+              <div class="counting">
+                <button id="minus">-</button>
+                <div class="count" id="counter">1</div>
+                <button id="plus">+</button>
+              </div>
+              <button class="btn-send" id="btn-send">
+                Pesan Ke Whatsapp <i class="bi bi-whatsapp"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="navbar" class="navbar">
+      <div class="title">Cemilan Ceria</div>
+      <div class="link-group">
+        <a href="#menu" class="link">Menu</a>
+        <a href="#testimoni" class="link">Testimoni</a>
+        <a href="#" onclick="show_overlay()" class="link">Pesan</a>
+      </div>
+    </div>
+
+    <div id="hero" class="product-list">
+      <div class="box-product" id="menu">
+        <img
+          src="https://www.sasa.co.id/medias/page_medias/resep_cireng_isi_ala_sasa.jpg"
+          alt=""
+        />
+        <div class="info-product">
+          <div class="title">Cireng Pedas - Rasa yang Menggoda!</div>
+          <div class="deskripsi">
+            Nikmati kelezatan Cireng Isi Ayam Suwir yang tak hanya renyah di
+            luar, tetapi juga lezat di dalam. Setiap gigitan menyajikan
+            sensasi crispy yang menggugah selera.
+          </div>
+          <div class="pembayaran">
+            <div class="harga"><span>Rp </span>10.000</div>
+            <a href="#" onclick="show_overlay()" class="btn-bayar">Beli</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimoni-box">
+      <div class="title" id="testimoni">Testimoni</div>
+      <hr />
+      <div class="card-client">
+        <div class="profile">
+          <img
+            src="https://med.gov.bz/wp-content/uploads/2020/08/dummy-profile-pic.jpg"
+            alt=""
+          />
+          <div class="user-info">
+            Rizky Adi Putra
+            <span>@rizkyadi72</span>
+          </div>
+        </div>
+        <div class="deskripsi">
+          Wah, Cireng Isi Ayam Suwir di sini benar-benar enak! Teksturnya renyah
+          di luar, lembut di dalam.
+        </div>
+      </div>
+      <div class="card-client">
+        <div class="profile">
+          <img
+            src="https://med.gov.bz/wp-content/uploads/2020/08/dummy-profile-pic.jpg"
+            alt=""
+          />
+          <div class="user-info">
+            Siti Nur Aisyah
+            <span>@citiais2</span>
+          </div>
+        </div>
+        <div class="deskripsi">
+          Cireng Isi Ayam Suwir-nya cukup enak, sih. Cuma rasanya agak standar
+          dan nggak terlalu spesial. Tapi masih oke untuk camilan.
+        </div>
+      </div>
+      <div class="card-client">
+        <div class="profile">
+          <img
+            src="https://med.gov.bz/wp-content/uploads/2020/08/dummy-profile-pic.jpg"
+            alt=""
+          />
+          <div class="user-info">
+            Budi Santoso
+            <span>@budibersaudara</span>
+          </div>
+        </div>
+        <div class="deskripsi">
+          Saya coba Cireng Isi Ayam Suwir-nya, tapi kurang cocok di lidah.
+          Ayamnya terasa agak kering, dan tekstur cirengnya agak keras.
+        </div>
+      </div>
+    </div>
+    <div class="about-box">
+      <div class="title">About</div>
+      <div class="item-warp">
+        <div class="img-container">
+          <img
+            src="https://res.cloudinary.com/dtzcamtgb/image/upload/logocireng"
+            alt=""
+          />
+        </div>
+        <div class="content-warp">
+          <div class="infomation">
+            <div class="name">Cemilan Ceria</div>
+            <div class="dekripsi">
+              Setiap cireng yang kami buat terjamin kelezatannya,
+              menggunakan bahan-bahan berkualitas dan resep yang sudah teruji,
+              menjadikannya pilihan camilan yang sempurna untuk menemani hari
+              Anda.
+            </div>
+          </div>
+        </div>
+        <div class="contact-list">
+          <a href="https://wa.me/6285692517903" class="contact-item"
+            ><i class="bi bi-whatsapp"></i> Whatsapp</a
+          >
+          <a
+            href="https://www.instagram.com/cemilanceeria/"
+            class="contact-item"
+            ><i class="bi bi-instagram"></i> Instagram</a
+          >
+          <a href="mailto:cemilanceeria@gmail.com" class="contact-item"
+            ><i class="bi bi-envelope"></i> Email</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      const eloverlay = document.getElementById("overlay");
+      const minusButton = document.getElementById("minus");
+      const plusButton = document.getElementById("plus");
+      const counterDisplay = document.getElementById("counter");
+      const btnkirim = document.getElementById('btn-send');
+      const namebuyer = document.getElementById('namapembeli')
+      const alamatbuyer = document.getElementById('alamatpembeli')
+
+      let counterValue = 1;
+
+      function updateCounter() {
+        counterDisplay.textContent = counterValue;
+      }
+
+      minusButton.addEventListener("click", () => {
+          if (counterValue > 1) {
+              counterValue--;
+              updateCounter();
+          }
+      });
+
+      plusButton.addEventListener("click", () => {
+          if (counterValue < 30) {
+              counterValue++;
+              updateCounter();
+          }
+      });
+
+      const navbar = document.getElementById('navbar');
+      const heroSection = document.getElementById('hero');
+
+      const observer =  new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              navbar.classList.add('scrolled');
+            } else {
+              navbar.classList.remove('scrolled')
+            }
+          });
+        }, {
+          threshold: 0.68
+        }
+        );
+
+      observer.observe(heroSection);
+      console.log(observer)
+      btnkirim.addEventListener('click', () => {
+        const message = `Assalamualaikum kak, Nama saya ${namebuyer.value} dan saya ingin memesan cireng sebanyak ${counterValue} buah dengan di kirim ke ${alamatbuyer.value}`;
+        const messageDecode = encodeURI(message);
+        let url = `https://wa.me/6285692517903?text=${messageDecode}`;
+        console.log(message + "\n\n\n\n\n" + messageDecode);
+        document.location.href = url;
+      })
+
+      function show_overlay() {
+        eloverlay.style.display = "block";
+      }
+      function hidden_overlay() {
+        eloverlay.style.display = "none";
+      }
+
+       $(document).ready(function(){
+            $("a").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
