@@ -482,17 +482,14 @@
         .navbar .title {
           font-size: medium;
         }
-
+        
         .box-product img {
           width: 100%;
           -webkit-user-drag: none;
           border-radius: 8px;
           object-fit: fill;
         }
-
-        .card {
-          height: 300 px;
-        }
+        
 
         .card .card-body .product .information .title {
           font-weight: 600;
@@ -506,6 +503,12 @@
 
         
       }
+      @media only screen and (max-width: 728px) {
+
+        .card {
+          height: 320px;
+        }
+       }
     </style>
   </head>
 
@@ -587,7 +590,7 @@
             sensasi crispy yang menggugah selera.
           </div>
           <div class="pembayaran">
-            <div class="harga"><span>Rp </span>10.000</div>
+            <div class="harga"><span>Rp </span> 3.000 <span>Per Pcs </span> </div>
             <a href="#" onclick="show_overlay()" class="btn-bayar">Beli</a>
           </div>
         </div>
@@ -731,11 +734,15 @@
       observer.observe(heroSection);
       console.log(observer)
       btnkirim.addEventListener('click', () => {
-        const message = `Assalamualaikum kak, Nama saya ${namebuyer.value} dan saya ingin memesan cireng sebanyak ${counterValue} buah dengan di kirim ke ${alamatbuyer.value}`;
+        if (namebuyer.value && alamatbuyer.value) {
+        const message = `Assalamualaikum, saya ingin memesan ${counterValue} pcs Cireng Ceria. \n Nama: ${namebuyer.value}\n Alamat: ${alamatbuyer.value}.`;
         const messageDecode = encodeURI(message);
         let url = `https://wa.me/6285692517903?text=${messageDecode}`;
         console.log(message + "\n\n\n\n\n" + messageDecode);
-        document.location.href = url;
+        window.open(url, "_blank");
+        } else {
+           alert("Harap isi nama dan alamat sebelum mengirim pesanan.");
+        }
       })
 
       function show_overlay() {
